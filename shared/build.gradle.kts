@@ -1,7 +1,9 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
+    kotlin(KotlinPlugins.multiplatform)
+    kotlin(KotlinPlugins.cocoapods)
+    kotlin(KotlinPlugins.serialization).version(Kotlin.version)
+    id(Plugins.androidLibrary)
+    id(Plugins.sqlDelight)
 }
 
 version = "1.0"
@@ -23,18 +25,34 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(Ktor.core)
+                implementation(Ktor.clientSerialization)
+                implementation(Kotlinx.datetime)
+                implementation(SQLDelight.runtime)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies{
+                implementation(Ktor.android)
+                implementation(SQLDelight.androidDriver)
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
+            dependencies {
+                implementation(Ktor.ios)
+                implementation(SQLDelight.nativeDriver)
+            }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
@@ -53,10 +71,17 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Application.compileSdk
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 30
-        targetSdk = 31
+        minSdk = Application.minSdk
+        targetSdk = Application.targetSdk
+    }
+}
+
+sqldelight {
+    database("RecipeDatabase") {
+        packageName = "com.tfl.food2forkkmm.datasource.cache"
+        sourceFolders = listOf("sqldelight")
     }
 }
