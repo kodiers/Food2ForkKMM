@@ -9,6 +9,6 @@ fun RecipeDetailScreen(recipe: Recipe?) {
     if (recipe == null) {
         Text(text = "Error")
     } else {
-        Text(text = "RecipeDetailScreen: ${recipe.title}")
+        Text(text = recipe.title)
     }
 }
