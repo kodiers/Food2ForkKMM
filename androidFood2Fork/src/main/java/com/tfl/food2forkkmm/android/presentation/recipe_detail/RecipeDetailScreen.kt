@@ -4,6 +4,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import com.tfl.food2forkkmm.android.presentation.components.RecipeImage
+import com.tfl.food2forkkmm.android.presentation.recipe_list.components.RecipeCard
 import com.tfl.food2forkkmm.android.presentation.theme.AppTheme
 import com.tfl.food2forkkmm.domain.model.Recipe
 
@@ -14,7 +15,7 @@ fun RecipeDetailScreen(recipe: Recipe?) {
         if (recipe == null) {
             Text(text = "Error")
         } else {
-            RecipeImage(url = recipe.featuredImage, contentDescription = recipe.title)
+            RecipeCard(recipe = recipe, onClick = {})
         }
     }
 
