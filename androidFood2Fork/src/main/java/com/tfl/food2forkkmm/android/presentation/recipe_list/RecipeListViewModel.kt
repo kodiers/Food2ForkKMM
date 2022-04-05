@@ -61,7 +61,9 @@ constructor(private val savedStateHandle: SavedStateHandle,
     }
 
     private fun handleError(errorMessage: String) {
-        println(errorMessage)
+        val queue = state.value.queue
+        queue.add(errorMessage)
+        state.value = state.value.copy(queue = queue)
     }
 
     private fun nextPage() {
@@ -76,7 +78,7 @@ constructor(private val savedStateHandle: SavedStateHandle,
                 dataState.data?.let { recipes ->
                     appendRecipes(recipes = recipes)
                 }
-                dataState.message.let { message ->
+                dataState.message?.let { message ->
                     handleError("RecipeListVM: ${message}")
                 }
             }

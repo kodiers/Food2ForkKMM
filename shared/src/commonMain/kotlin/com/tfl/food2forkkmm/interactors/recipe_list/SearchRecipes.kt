@@ -14,6 +14,9 @@ class SearchRecipes(private val recipeService: RecipeService, private val recipe
         try {
             val recipes = recipeService.search(page, query)
             delay(500)
+            if (query == "error") {
+                throw Exception("Forcing an error... Search FAILED")
+            }
             recipeCache.insert(recipes)
             val cacheResult = if (query.isBlank()) {
                 recipeCache.getAll(page = page)
