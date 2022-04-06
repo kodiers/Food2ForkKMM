@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tfl.food2forkkmm.domain.model.Recipe
+import com.tfl.food2forkkmm.domain.model.*
+import com.tfl.food2forkkmm.domain.util.GenericMessageQueueUtil
+import com.tfl.food2forkkmm.domain.util.Queue
 import com.tfl.food2forkkmm.interactors.recipe_list.SearchRecipes
 import com.tfl.food2forkkmm.presentation.recipe_list.FoodCategory
 import com.tfl.food2forkkmm.presentation.recipe_list.RecipeListEvents
@@ -13,7 +15,10 @@ import com.tfl.food2forkkmm.presentation.recipe_list.RecipeListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.lang.Exception
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class RecipeListViewModel
@@ -44,9 +49,27 @@ constructor(private val savedStateHandle: SavedStateHandle,
             is RecipeListEvents.OnSelectCategory -> {
                 onSelectCategory(event.category)
             }
-            else -> {
-                handleError("Invalid Event")
+            is RecipeListEvents.OnRemoveHeadMessageFromQueue -> {
+                removeHeadMessage()
             }
+            else -> {
+                appendToMessageQueue(GenericMessageInfo.Builder()
+                    .id(UUID.randomUUID().toString())
+                    .title("Error")
+                    .uiComponentType(UIComponentType.Dialog)
+                    .description("Invalid Event"))
+            }
+        }
+    }
+
+    private fun removeHeadMessage() {
+        try {
+            val queue = state.value.queue
+            queue.remove()
+            state.value = state.value.copy(queue = Queue(mutableListOf()))
+            state.value = state.value.copy(queue = queue)
+        } catch (e: Exception) {
+
         }
     }
 
@@ -60,10 +83,16 @@ constructor(private val savedStateHandle: SavedStateHandle,
         loadRecipes()
     }
 
-    private fun handleError(errorMessage: String) {
-        val queue = state.value.queue
-        queue.add(errorMessage)
-        state.value = state.value.copy(queue = queue)
+    private fun appendToMessageQueue(messageInfo: GenericMessageInfo.Builder) {
+        if (!GenericMessageQueueUtil().doesMessageAlreadyExistInQueue(
+                queue = state.value.queue,
+                messageInfo = messageInfo.build()
+        )) {
+            val queue = state.value.queue
+            queue.add(messageInfo.build())
+            state.value = state.value.copy(queue = queue)
+        }
+
     }
 
     private fun nextPage() {
@@ -79,7 +108,7 @@ constructor(private val savedStateHandle: SavedStateHandle,
                     appendRecipes(recipes = recipes)
                 }
                 dataState.message?.let { message ->
-                    handleError("RecipeListVM: ${message}")
+                    appendToMessageQueue(message)
                 }
             }
             .launchIn(viewModelScope)

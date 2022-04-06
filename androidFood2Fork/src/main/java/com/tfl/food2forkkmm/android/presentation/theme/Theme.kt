@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.tfl.food2forkkmm.android.presentation.components.CircularIndeterminateProgressBar
 import com.tfl.food2forkkmm.android.presentation.components.ProcessDialogQueue
+import com.tfl.food2forkkmm.domain.model.GenericMessageInfo
 import com.tfl.food2forkkmm.domain.util.Queue
 
 @SuppressLint("ConflictingOnColor")
@@ -34,8 +35,9 @@ private val LightThemeColors = lightColors(
 @Composable
 fun AppTheme(
     displayProgressBar: Boolean,
-    dialogQueue: Queue<String> = Queue(mutableListOf()),
-    content: @Composable () -> Unit,
+    dialogQueue: Queue<GenericMessageInfo> = Queue(mutableListOf()),
+    onRemoveHeadFromQueue: () -> Unit,
+    content: @Composable () -> Unit
 ) {
     MaterialTheme(
         colors = LightThemeColors,
@@ -47,7 +49,9 @@ fun AppTheme(
                 .fillMaxSize()
                 .background(color = Grey1)
         ){
-            ProcessDialogQueue(dialogQueue = dialogQueue)
+            ProcessDialogQueue(
+                dialogQueue = dialogQueue,
+                onRemoveHeadFromQueue = onRemoveHeadFromQueue)
             content()
             CircularIndeterminateProgressBar(isDisplayed = displayProgressBar, verticalBias = 0.3f)
         }
