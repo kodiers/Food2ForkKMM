@@ -10,7 +10,8 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		ACCB755F27FFABC50080D0B9 /* RecipeListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB755E27FFABC50080D0B9 /* RecipeListScreen.swift */; };
+		ACCB756127FFADCE0080D0B9 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB756027FFADCE0080D0B9 /* RecipeListViewModel.swift */; };
 		D2BC6B8013BB059A41E95739 /* Pods_iosFood2Fork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FC7FAA9BB40245D3802760 /* Pods_iosFood2Fork.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,10 +20,11 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosFood2Fork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosFood2Fork.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76F15F1115E8D06D1FDBC3D7 /* Pods-iosFood2Fork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosFood2Fork.debug.xcconfig"; path = "Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork.debug.xcconfig"; sourceTree = "<group>"; };
 		8453E73216D2783190912166 /* Pods-iosFood2Fork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosFood2Fork.release.xcconfig"; path = "Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork.release.xcconfig"; sourceTree = "<group>"; };
+		ACCB755E27FFABC50080D0B9 /* RecipeListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListScreen.swift; sourceTree = "<group>"; };
+		ACCB756027FFADCE0080D0B9 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		D3FC7FAA9BB40245D3802760 /* Pods_iosFood2Fork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosFood2Fork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -67,13 +69,30 @@
 		7555FF7D242A565900829871 /* iosFood2Fork */ = {
 			isa = PBXGroup;
 			children = (
+				ACCB755C27FFAB950080D0B9 /* presentation */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = iosFood2Fork;
+			sourceTree = "<group>";
+		};
+		ACCB755C27FFAB950080D0B9 /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				ACCB755D27FFABA20080D0B9 /* recipe_list */,
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
+		ACCB755D27FFABA20080D0B9 /* recipe_list */ = {
+			isa = PBXGroup;
+			children = (
+				ACCB755E27FFABC50080D0B9 /* RecipeListScreen.swift */,
+				ACCB756027FFADCE0080D0B9 /* RecipeListViewModel.swift */,
+			);
+			path = recipe_list;
 			sourceTree = "<group>";
 		};
 		B1188AEB9CCC91E78CBC4FC9 /* Frameworks */ = {
@@ -189,8 +208,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACCB755F27FFABC50080D0B9 /* RecipeListScreen.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				ACCB756127FFADCE0080D0B9 /* RecipeListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +347,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"shared\"",
+					"-lsqlite3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosFood2Fork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -347,6 +375,14 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"shared\"",
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosFood2Fork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
