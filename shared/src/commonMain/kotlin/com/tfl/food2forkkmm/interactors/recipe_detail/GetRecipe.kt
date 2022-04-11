@@ -4,14 +4,16 @@ import com.tfl.food2forkkmm.datasource.cache.RecipeCache
 import com.tfl.food2forkkmm.domain.model.GenericMessageInfo
 import com.tfl.food2forkkmm.domain.model.Recipe
 import com.tfl.food2forkkmm.domain.model.UIComponentType
+import com.tfl.food2forkkmm.domain.util.CommonFlow
 import com.tfl.food2forkkmm.domain.util.DataState
+import com.tfl.food2forkkmm.domain.util.asCommonFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class GetRecipe(
     private val recipeCache: RecipeCache
 ) {
-    fun execute(recipeId: Int): Flow<DataState<Recipe>> = flow {
+    fun execute(recipeId: Int): CommonFlow<DataState<Recipe>> = flow {
         emit(DataState.loading())
         try {
             val recipe = recipeCache.get(recipeId = recipeId)
@@ -24,5 +26,5 @@ class GetRecipe(
                 .description(e.message ?: "Unknown Error")
             ))
         }
-    }
+    }.asCommonFlow()
 }

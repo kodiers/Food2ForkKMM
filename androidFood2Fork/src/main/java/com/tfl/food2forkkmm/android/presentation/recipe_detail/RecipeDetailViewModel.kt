@@ -77,7 +77,8 @@ constructor(private val savedStateHandle: SavedStateHandle,
     }
 
     private fun getRecipe(recipeId: Int) {
-        getRecipe.execute(recipeId = recipeId).onEach { dataState ->
+        getRecipe.execute(recipeId = recipeId).collectCommon(coroutineScope = viewModelScope)
+        { dataState ->
             state.value = state.value.copy(isLoading = dataState.isLoading)
             println("RecipeDetailViewModel: ${dataState.isLoading}")
             dataState.data.let { recipe ->
@@ -90,6 +91,5 @@ constructor(private val savedStateHandle: SavedStateHandle,
                 }
             }
         }
-            .launchIn(viewModelScope)
     }
 }

@@ -102,7 +102,8 @@ constructor(private val savedStateHandle: SavedStateHandle,
 
     private fun loadRecipes() {
         searchRecipes.execute(page = state.value.page, query = state.value.query)
-            .onEach { dataState ->
+            .collectCommon(coroutineScope = viewModelScope)
+            { dataState ->
                 state.value = state.value.copy(isLoading = dataState.isLoading)
                 dataState.data?.let { recipes ->
                     appendRecipes(recipes = recipes)
@@ -111,7 +112,6 @@ constructor(private val savedStateHandle: SavedStateHandle,
                     appendToMessageQueue(message)
                 }
             }
-            .launchIn(viewModelScope)
     }
 
     private fun appendRecipes(recipes: List<Recipe>) {
