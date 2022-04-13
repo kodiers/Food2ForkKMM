@@ -28,13 +28,13 @@ class RecipeListViewModel: ObservableObject {
         case is RecipeListEvents.LoadRecipes:
             loadRecipes()
         case is RecipeListEvents.NewSearch:
-            doNothing()
+            newSearch()
         case is RecipeListEvents.NextPage:
             nextPage()
         case is RecipeListEvents.OnUpdateQuery:
-            doNothing()
+            onUpdateQuery(query: (stateEvent as! RecipeListEvents.OnUpdateQuery).query)
         case is RecipeListEvents.OnSelectCategory:
-            doNothing()
+            onUpdateSelectedCategory(foodCategory: (stateEvent as! RecipeListEvents.OnSelectCategory).category)
         case is RecipeListEvents.OnRemoveHeadMessageFromQueue:
             doNothing()
         default:
@@ -65,6 +65,11 @@ class RecipeListViewModel: ObservableObject {
         }
     }
     
+    private func newSearch() {
+        resetSearchState()
+        loadRecipes()
+    }
+    
     private func nextPage() {
         let currentState = self.state.copy() as! RecipeListState
         updateState(page: Int(currentState.page) + 1)
@@ -84,6 +89,26 @@ class RecipeListViewModel: ObservableObject {
         self.state = self.state.doCopy(isLoading: currentState.isLoading, page: currentState.page, query: currentState.query, selectedCategory: currentState.selectedCategory, recipes: currentRecipes, bottomRecipe: currentState.bottomRecipe, queue: currentState.queue)
         currentState = self.state.copy() as! RecipeListState
         self.onUpdateBottomRecipe(recipe: currentState.recipes[currentState.recipes.count - 1])
+    }
+    
+    private func  onUpdateQuery(query: String) {
+        updateState(query: query)
+    }
+    
+    private func resetSearchState() {
+        let currentState = self.state.copy() as! RecipeListState
+        var foodCategory = currentState.selectedCategory
+        if (foodCategory?.value != currentState.query) {
+            foodCategory = nil
+        }
+        self.state = self.state.doCopy(isLoading: currentState.isLoading, page: 1, query: currentState.query, selectedCategory: foodCategory, recipes: [], bottomRecipe: currentState.bottomRecipe, queue: currentState.queue)
+    }
+    
+    private func onUpdateSelectedCategory(foodCategory: FoodCategory?) {
+        let currentState = self.state.copy() as! RecipeListState
+        self.state = self.state.doCopy(isLoading: currentState.isLoading, page: currentState.page, query: currentState.query, selectedCategory: foodCategory, recipes: currentState.recipes, bottomRecipe: currentState.bottomRecipe, queue: currentState.queue)
+        onUpdateQuery(query: foodCategory?.value ?? "")
+        onTriggerEvent(stateEvent: RecipeListEvents.NewSearch())
     }
     
     private func handleMessageByUiComponentType(_ message: GenericMessageInfo) {

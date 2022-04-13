@@ -11,6 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		AC6E456028063E2B00C7B553 /* SearchAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E455F28063E2B00C7B553 /* SearchAppBar.swift */; };
+		ACC3422328078C7100B646B5 /* FoodCategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC3422228078C7100B646B5 /* FoodCategoryChip.swift */; };
 		ACCB755F27FFABC50080D0B9 /* RecipeListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB755E27FFABC50080D0B9 /* RecipeListScreen.swift */; };
 		ACCB756127FFADCE0080D0B9 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB756027FFADCE0080D0B9 /* RecipeListViewModel.swift */; };
 		D2BC6B8013BB059A41E95739 /* Pods_iosFood2Fork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FC7FAA9BB40245D3802760 /* Pods_iosFood2Fork.framework */; };
@@ -25,6 +26,7 @@
 		76F15F1115E8D06D1FDBC3D7 /* Pods-iosFood2Fork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosFood2Fork.debug.xcconfig"; path = "Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork.debug.xcconfig"; sourceTree = "<group>"; };
 		8453E73216D2783190912166 /* Pods-iosFood2Fork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosFood2Fork.release.xcconfig"; path = "Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork.release.xcconfig"; sourceTree = "<group>"; };
 		AC6E455F28063E2B00C7B553 /* SearchAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppBar.swift; sourceTree = "<group>"; };
+		ACC3422228078C7100B646B5 /* FoodCategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryChip.swift; sourceTree = "<group>"; };
 		ACCB755E27FFABC50080D0B9 /* RecipeListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListScreen.swift; sourceTree = "<group>"; };
 		ACCB756027FFADCE0080D0B9 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		D3FC7FAA9BB40245D3802760 /* Pods_iosFood2Fork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosFood2Fork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				AC6E455F28063E2B00C7B553 /* SearchAppBar.swift */,
+				ACC3422228078C7100B646B5 /* FoodCategoryChip.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				ACCB755F27FFABC50080D0B9 /* RecipeListScreen.swift in Sources */,
 				AC6E456028063E2B00C7B553 /* SearchAppBar.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				ACC3422328078C7100B646B5 /* FoodCategoryChip.swift in Sources */,
 				ACCB756127FFADCE0080D0B9 /* RecipeListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
