@@ -28,18 +28,34 @@ struct RecipeListScreen: View {
     }
     
     var body: some View {
-        VStack {
-            SearchAppBar(query: viewModel.state.query, foodCategories: foodCategories, selectedCategory: viewModel.state.selectedCategory) { event in
-                viewModel.onTriggerEvent(stateEvent: event)
-            }
-            List {
-                ForEach(viewModel.state.recipes, id: \.self.id) {recipe in
-                    Text(recipe.title)
-                        .onAppear(perform: {
-                            if viewModel.shouldQueryNextPage(recipe: recipe) {
-                                viewModel.onTriggerEvent(stateEvent: RecipeListEvents.NextPage())
+        NavigationView {
+            ZStack {
+                VStack {
+                    SearchAppBar(query: viewModel.state.query, foodCategories: foodCategories, selectedCategory: viewModel.state.selectedCategory) { event in
+                        viewModel.onTriggerEvent(stateEvent: event)
+                    }
+                    List {
+                        ForEach(viewModel.state.recipes, id: \.self.id) {recipe in
+                            ZStack {
+                                RecipeCard(recipe: recipe)
+                                    .onAppear(perform: {
+                                        if viewModel.shouldQueryNextPage(recipe: recipe) {
+                                            viewModel.onTriggerEvent(stateEvent: RecipeListEvents.NextPage())
+                                        }
+                                    })
+                                NavigationLink(destination: RecipeDetailScreen(recipeId: Int(recipe.id), cacheModule: self.cacheModule)) {
+                                    EmptyView()
+                                }
                             }
-                        })
+                            .listRowInsets(EdgeInsets())
+                            .padding(.top, 10)
+                        }
+                        if (viewModel.state.isLoading) {
+                            ProgressView("Searching recipes...")
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .navigationBarHidden(true)
                 }
             }
         }

@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		AC075E9F2808DA05000707A0 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC075E9E2808DA05000707A0 /* RecipeCard.swift */; };
+		AC075EA32808E1C1000707A0 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC075EA22808E1C1000707A0 /* RecipeDetailViewModel.swift */; };
+		AC075EA52808E300000707A0 /* RecipeDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC075EA42808E300000707A0 /* RecipeDetailScreen.swift */; };
 		AC6E456028063E2B00C7B553 /* SearchAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6E455F28063E2B00C7B553 /* SearchAppBar.swift */; };
 		ACC3422328078C7100B646B5 /* FoodCategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC3422228078C7100B646B5 /* FoodCategoryChip.swift */; };
 		ACCB755F27FFABC50080D0B9 /* RecipeListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCB755E27FFABC50080D0B9 /* RecipeListScreen.swift */; };
@@ -25,6 +28,9 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76F15F1115E8D06D1FDBC3D7 /* Pods-iosFood2Fork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosFood2Fork.debug.xcconfig"; path = "Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork.debug.xcconfig"; sourceTree = "<group>"; };
 		8453E73216D2783190912166 /* Pods-iosFood2Fork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosFood2Fork.release.xcconfig"; path = "Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork.release.xcconfig"; sourceTree = "<group>"; };
+		AC075E9E2808DA05000707A0 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
+		AC075EA22808E1C1000707A0 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
+		AC075EA42808E300000707A0 /* RecipeDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailScreen.swift; sourceTree = "<group>"; };
 		AC6E455F28063E2B00C7B553 /* SearchAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppBar.swift; sourceTree = "<group>"; };
 		ACC3422228078C7100B646B5 /* FoodCategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryChip.swift; sourceTree = "<group>"; };
 		ACCB755E27FFABC50080D0B9 /* RecipeListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListScreen.swift; sourceTree = "<group>"; };
@@ -82,11 +88,21 @@
 			path = iosFood2Fork;
 			sourceTree = "<group>";
 		};
+		AC075EA02808E199000707A0 /* recipe_detail */ = {
+			isa = PBXGroup;
+			children = (
+				AC075EA22808E1C1000707A0 /* RecipeDetailViewModel.swift */,
+				AC075EA42808E300000707A0 /* RecipeDetailScreen.swift */,
+			);
+			path = recipe_detail;
+			sourceTree = "<group>";
+		};
 		AC6E455E28063E0D00C7B553 /* components */ = {
 			isa = PBXGroup;
 			children = (
 				AC6E455F28063E2B00C7B553 /* SearchAppBar.swift */,
 				ACC3422228078C7100B646B5 /* FoodCategoryChip.swift */,
+				AC075E9E2808DA05000707A0 /* RecipeCard.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -94,6 +110,7 @@
 		ACCB755C27FFAB950080D0B9 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AC075EA02808E199000707A0 /* recipe_detail */,
 				AC6E455E28063E0D00C7B553 /* components */,
 				ACCB755D27FFABA20080D0B9 /* recipe_list */,
 			);
@@ -137,6 +154,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				2246DD8E7B69F2429C3DC22E /* Frameworks */,
+				64A0745292486CACA95CA65C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,6 +211,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		64A0745292486CACA95CA65C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BA65EC11497251099EBC6132 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,10 +258,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACCB755F27FFABC50080D0B9 /* RecipeListScreen.swift in Sources */,
+				AC075EA32808E1C1000707A0 /* RecipeDetailViewModel.swift in Sources */,
 				AC6E456028063E2B00C7B553 /* SearchAppBar.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				ACC3422328078C7100B646B5 /* FoodCategoryChip.swift in Sources */,
 				ACCB756127FFADCE0080D0B9 /* RecipeListViewModel.swift in Sources */,
+				AC075EA52808E300000707A0 /* RecipeDetailScreen.swift in Sources */,
+				AC075E9F2808DA05000707A0 /* RecipeCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
