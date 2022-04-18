@@ -29,6 +29,7 @@ struct SearchAppBar: View {
                 TextField("Search...", text: $query) {
                     onTriggerEvent(RecipeListEvents.NewSearch())
                 }
+                .font(Font.custom("Avenir", size: 16))
                 .onChange(of: query, perform: { value in
                     onTriggerEvent(RecipeListEvents.OnUpdateQuery(query: value))
                 })

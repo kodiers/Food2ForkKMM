@@ -50,12 +50,12 @@ struct RecipeListScreen: View {
                             .listRowInsets(EdgeInsets())
                             .padding(.top, 10)
                         }
-                        if (viewModel.state.isLoading) {
-                            ProgressView("Searching recipes...")
-                        }
                     }
                     .listStyle(PlainListStyle())
                     .navigationBarHidden(true)
+                }
+                if (viewModel.state.isLoading) {
+                    ProgressView("Searching recipes...")
                 }
             }
         }

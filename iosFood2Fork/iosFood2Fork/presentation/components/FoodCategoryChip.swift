@@ -20,7 +20,7 @@ struct FoodCategoryChip: View {
     
     var body: some View {
         HStack {
-            Text(category)
+            DefaultText(category, size: 16)
                 .padding(8)
                 .background(isSelected ? Color.gray : Color.blue)
                 .foregroundColor(Color.white)
