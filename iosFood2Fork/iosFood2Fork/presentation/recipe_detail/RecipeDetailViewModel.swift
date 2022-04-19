@@ -23,7 +23,7 @@ class RecipeDetailViewModel: ObservableObject {
         case is RecipeDetailEvents.GetRecipe:
             getRecipe(recipeId: Int((stateEvent as! RecipeDetailEvents.GetRecipe).recipeId))
         case is RecipeDetailEvents.OnRemoveHeadMessageFromQueue:
-            doNothing()
+            removeHeadFromQueue()
         default: doNothing()
         }
     }
@@ -57,7 +57,14 @@ class RecipeDetailViewModel: ObservableObject {
     }
     
     private func handleMessageByUIComponentType(_ message: GenericMessageInfo){
-        // TODO("handle error messages")
+        switch message.uiComponentType {
+        case UIComponentType.Dialog():
+            appendToQueue(message: message)
+        case UIComponentType.None():
+            print("\(message.description)")
+        default:
+            doNothing()
+        }
     }
     
     private func doNothing(){}
@@ -73,5 +80,26 @@ class RecipeDetailViewModel: ObservableObject {
             recipe: recipe ?? currentState.recipe,
             queue: queue ?? currentState.queue
         )
+    }
+    
+    private func appendToQueue(message: GenericMessageInfo) {
+        let currentState = self.state.copy() as! RecipeDetailState
+        let queue = currentState.queue
+        let queueUtil = GenericMessageQueueUtil()
+        if !queueUtil.doesMessageAlreadyExistInQueue(queue: queue, messageInfo: message) {
+            queue.add(element: message)
+            updateState(queue: queue)
+        }
+    }
+    
+    func removeHeadFromQueue() {
+        let currentState = self.state.copy() as! RecipeDetailState
+        let queue = currentState.queue
+        do {
+            try queue.remove()
+            updateState(queue: queue)
+        } catch {
+            print("\(error)")
+        }
     }
 }

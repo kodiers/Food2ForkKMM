@@ -13,6 +13,7 @@
 		AC075E9F2808DA05000707A0 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC075E9E2808DA05000707A0 /* RecipeCard.swift */; };
 		AC075EA32808E1C1000707A0 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC075EA22808E1C1000707A0 /* RecipeDetailViewModel.swift */; };
 		AC075EA52808E300000707A0 /* RecipeDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC075EA42808E300000707A0 /* RecipeDetailScreen.swift */; };
+		AC306809280F68E300A1A896 /* GenericMessageInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC306808280F68E300A1A896 /* GenericMessageInfoAlert.swift */; };
 		AC5A55C2280E2B2D002EE09D /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A55C1280E2B2D002EE09D /* RecipeView.swift */; };
 		AC5A55C5280E2E41002EE09D /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = AC5A55C4280E2E41002EE09D /* Avenir.ttc */; };
 		AC5A55C7280E2F11002EE09D /* DefaultText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A55C6280E2F11002EE09D /* DefaultText.swift */; };
@@ -34,6 +35,7 @@
 		AC075E9E2808DA05000707A0 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
 		AC075EA22808E1C1000707A0 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
 		AC075EA42808E300000707A0 /* RecipeDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailScreen.swift; sourceTree = "<group>"; };
+		AC306808280F68E300A1A896 /* GenericMessageInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMessageInfoAlert.swift; sourceTree = "<group>"; };
 		AC5A55C1280E2B2D002EE09D /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		AC5A55C4280E2E41002EE09D /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		AC5A55C6280E2F11002EE09D /* DefaultText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultText.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				ACC3422228078C7100B646B5 /* FoodCategoryChip.swift */,
 				AC075E9E2808DA05000707A0 /* RecipeCard.swift */,
 				AC5A55C6280E2F11002EE09D /* DefaultText.swift */,
+				AC306808280F68E300A1A896 /* GenericMessageInfoAlert.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				ACCB755F27FFABC50080D0B9 /* RecipeListScreen.swift in Sources */,
 				AC075EA32808E1C1000707A0 /* RecipeDetailViewModel.swift in Sources */,
 				AC6E456028063E2B00C7B553 /* SearchAppBar.swift in Sources */,
+				AC306809280F68E300A1A896 /* GenericMessageInfoAlert.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				ACC3422328078C7100B646B5 /* FoodCategoryChip.swift in Sources */,
 				AC5A55C7280E2F11002EE09D /* DefaultText.swift in Sources */,

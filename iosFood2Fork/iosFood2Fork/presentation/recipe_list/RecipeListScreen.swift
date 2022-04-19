@@ -53,6 +53,12 @@ struct RecipeListScreen: View {
                     }
                     .listStyle(PlainListStyle())
                     .navigationBarHidden(true)
+                    .alert(isPresented: $viewModel.showDialog) {
+                        let first = viewModel.state.queue.peek()!
+                        return GenericMessageInfoAlert().build(message: first) {
+                            viewModel.onTriggerEvent(stateEvent: RecipeListEvents.OnRemoveHeadMessageFromQueue())
+                        }
+                    }
                 }
                 if (viewModel.state.isLoading) {
                     ProgressView("Searching recipes...")

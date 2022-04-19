@@ -34,10 +34,6 @@ struct RecipeDetailScreen: View {
     }
     
     var body: some View {
-        if viewModel.state.recipe != nil {
-            RecipeView(recipe: viewModel.state.recipe!, dateUtil: datetimeUtil)
-        } else {
-            Text("Unable to retrieve the recipe details")
-        }
+        RecipeView(recipe: viewModel.state.recipe!, dateUtil: datetimeUtil, message: viewModel.state.queue.peek(), onTriggerEvent: viewModel.onTriggerEvent)
     }
 }
